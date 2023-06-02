@@ -115,7 +115,7 @@ const TodoApp = () => {
     <div className="max-w-4xl mx-auto my-10">
       <div className="bg-white p-4 shadow">
         <div className="flex justify-between">
-          <h1 className="text-2xl font-bold mb-4">To-Do List</h1>
+          <h1 className="text-2xl font-bold mb-4">Task List</h1>
           {user ? (
             <button onClick={handleLogout} className="btn btn-error btn-sm ">
               logout
