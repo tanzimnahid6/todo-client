@@ -5,10 +5,14 @@
 - But user have to login firt to ad a task ,because the task are store on database .
 
 
-## Technology
+## Technology frontend
 
 - Our ToDo web application is built using React, Tailwind CSS, DaisyUI, React Router Dom, Hot Toast, and Firebase Authentication. With this technology stack, we have created a sleek and intuitive user interface for managing tasks. Users can easily create, update, and delete tasks. The application provides notifications using Hot Toast, ensuring users stay updated on task changes.
 - Additionally, Firebase Authentication allows for secure user registration, login, and authentication. React Router Dom enables smooth navigation between different views, while Tailwind CSS and DaisyUI ensure a visually appealing . Overall, our task management app offers a seamless and efficient task management experience.
+
+## Technology backend
+
+- For the backend technology of the task management app, there use a server-side framework, Express.js, combined with a database system such as  MongoDB. Implementing CRUD (Create, Read, Update, Delete) operations allows users to manage tasks efficiently. The backend handles data storage, retrieval, and manipulation, ensuring seamless integration with the frontend.
 
 ## Live Link
 [Task-Management](https://todo-2bc67.web.app/)
