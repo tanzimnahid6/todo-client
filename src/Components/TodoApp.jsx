@@ -12,7 +12,7 @@ const TodoApp = () => {
   const complete = "incomplete"
   const { user, logOut } = useContext(AuthContext)
 
-  const url = `http://localhost:5000/todo/${user?.email}`
+  const url = `https://server-templete-fake-data.vercel.app/todo/${user?.email}`
   const { data, refetch } = useQuery("data", () => axios.get(url))
   if (data?.data.length == 0) {
     refetch()
@@ -36,7 +36,7 @@ const TodoApp = () => {
     }
     form.reset()
 
-    fetch("http://localhost:5000/todo", {
+    fetch("https://server-templete-fake-data.vercel.app/todo", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -80,7 +80,7 @@ const TodoApp = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/todo/${id}`, {
+        fetch(`https://server-templete-fake-data.vercel.app/todo/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -96,7 +96,7 @@ const TodoApp = () => {
   //handle update status==============
   const handleStatus = (id) => {
     
-    fetch(`http://localhost:5000/todo/${id}`, {
+    fetch(`https://server-templete-fake-data.vercel.app/todo/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
