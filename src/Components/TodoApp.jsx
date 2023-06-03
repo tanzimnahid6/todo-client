@@ -1,28 +1,34 @@
-import { useContext } from "react"
-import { AuthContext } from "./AuthProvider"
-import { Link, useNavigate } from "react-router-dom"
+// import { useContext } from "react"
+// import { AuthContext } from "./AuthProvider"
+// import { Link } from "react-router-dom"
 
 import { useQuery } from "react-query"
 import axios from "axios"
 import Swal from "sweetalert2"
 
 const TodoApp = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const complete = "incomplete"
-  const { user, logOut } = useContext(AuthContext)
+  // const { user, logOut } = useContext(AuthContext)
 
-  const url = `https://server-templete-fake-data.vercel.app/todo/${user?.email}`
+  // const url = `https://server-templete-fake-data.vercel.app/todo/${user?.email}`
+  const url = `https://server-templete-fake-data.vercel.app/todo`   //==========================modified
+
   const { data, refetch } = useQuery("data", () => axios.get(url))
+  console.log(data?.data);
   if (data?.data.length == 0) {
     refetch()
   }
 
+//handle add to task======================
+
   const handleAddTask = (event) => {
+   // const user = true   //===========================================modified
     event.preventDefault()
-    if (!user) {
-      return navigate("/login")
-    }
+    // if (!user) {
+    //   return navigate("/login")
+    // }
     const form = event.target
     const name = form.name.value
     const description = form.desc.value
@@ -31,7 +37,7 @@ const TodoApp = () => {
       name,
       description,
       title,
-      email: user.email,
+      // email: user.email,
       status: complete,
     }
     form.reset()
@@ -57,16 +63,16 @@ const TodoApp = () => {
       })
   }
 
-  const handleLogout = () => {
-    logOut()
-      .then(() => {
-        console.log("Log out")
-      })
-      .catch((error) => {
-        // An error happened.
-        console.log(error)
-      })
-  }
+  // const handleLogout = () => {
+  //   logOut()
+  //     .then(() => {
+  //       console.log("Log out")
+  //     })
+  //     .catch((error) => {
+  //       // An error happened.
+  //       console.log(error)
+  //     })
+  // }
 
   //delete task operation========================
   const handleDelete = (id) => {
@@ -116,15 +122,15 @@ const TodoApp = () => {
       <div className="bg-white p-4 shadow">
         <div className="flex justify-between">
           <h1 className="text-2xl font-bold mb-4">Task List</h1>
-          {user ? (
+          {/* {user ? (
             <button onClick={handleLogout} className="btn btn-error btn-sm ">
               logout
             </button>
           ) : (
             <Link to="/login">
-              <button className="btn btn-error btn-sm ">Google Login</button>
+              <button className="btn btn-error btn-sm btn-disabled ">Google Login</button>
             </Link>
-          )}
+          )} */}
         </div>
         <form className=" mb-4" onSubmit={handleAddTask}>
           <div className="flex flex-col gap-4">
@@ -159,7 +165,7 @@ const TodoApp = () => {
         <div className="overflow-x-auto">
           <table className="table w-full">
             <thead>
-              {user && (
+              { (
                 <tr>
                   <th>#</th>
                   <th>Task Name</th>
@@ -171,7 +177,7 @@ const TodoApp = () => {
               )}
             </thead>
             <tbody>
-              {user &&
+              {
                 data?.data.map((item, i) => (
                   <tr key={item._id}>
                     <td>{i + 1}</td>
